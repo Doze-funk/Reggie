@@ -6,6 +6,7 @@ import com.itheima.Reggie.common.R;
 import com.itheima.Reggie.dto.DishDto;
 import com.itheima.Reggie.entity.Category;
 import com.itheima.Reggie.entity.Dish;
+import com.itheima.Reggie.entity.DishFlavor;
 import com.itheima.Reggie.service.CategoryService;
 import com.itheima.Reggie.service.DishFlavorService;
 import com.itheima.Reggie.service.DishService;
@@ -15,6 +16,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -72,6 +74,19 @@ public class DishController {
         dishDtoPage.setRecords(list);
 
         return R.success(dishDtoPage);
+    }
+
+    @GetMapping("/{id}")
+    public R<DishDto> get(@PathVariable Long id)  {
+        DishDto dishDto = dishService.getByIdWithFlavour(id);
+        return R.success(dishDto);
+    }
+
+    @PutMapping
+    public R<String> update(@RequestBody DishDto dishDto) {
+        dishService.updateWithFlavor(dishDto);
+
+        return R.success("新增菜品成功");
     }
 
 

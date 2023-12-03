@@ -1,5 +1,6 @@
 package com.itheima.Reggie.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.itheima.Reggie.dto.DishDto;
 import com.itheima.Reggie.entity.Dish;
@@ -8,6 +9,7 @@ import com.itheima.Reggie.mapper.DishMapper;
 import com.itheima.Reggie.service.DishFlavorService;
 import com.itheima.Reggie.service.DishService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,5 +41,15 @@ public class DishServiceImpl extends ServiceImpl<DishMapper, Dish> implements Di
 
         // 保存菜品口味数据到菜品口味表dish_flavor
         dishFlavorService.saveBatch(flavors);
+    }
+
+    @Override
+    public DishDto getByIdWithFlavour(Long id) {
+        return null;
+    }
+
+    @Override
+    public void updateWithFlavor(DishDto dishDto) {
+
     }
 }
