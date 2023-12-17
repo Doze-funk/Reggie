@@ -34,6 +34,7 @@ public class EmployeeController {
         // 封装查询条件
         queryWrapper.eq(Employee::getUsername,employee.getUsername()); //lamda匿名函数用法
         // 获取唯一值
+        // 返回符合条件的一条 Employee 记录。如果查询结果有多条符合条件的记录，它会抛出异常；如果没有符合条件的记录，返回 null。
         Employee emp = employeeService.getOne(queryWrapper);
 
         if (emp == null) {
@@ -54,7 +55,7 @@ public class EmployeeController {
 
     @PostMapping("/logout")
     public R<String> logout(HttpServletRequest request) {
-        // 为什么需要清理session中保存的员工id，退出为什么前后端需要清楚用户信息。
+        // 清除用户信息,确保每一次登录都是一次全新的会话。
         request.getSession().removeAttribute("employee");
         return R.success("退出成功");
     }

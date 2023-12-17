@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Slf4j
 @SpringBootApplication
 @ServletComponentScan
+// 开启事务管理
 @EnableTransactionManagement
 public class ReggieApplication {
     public static void main(String[] args) {
